@@ -10,6 +10,7 @@ export const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setError(null)
   
     if (!emailOrUsername || !password) {
       setError("Beide Felder sind erforderlich.");
