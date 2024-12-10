@@ -1,7 +1,13 @@
+import { UserProvider } from "./utils/UserContext";
+import { Login } from './components/Login';
+
 function App() {
 
   return (
     <>
+      <UserProvider>
+        <Login />
+      </UserProvider>
     </>
   )
 }
