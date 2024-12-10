@@ -11,8 +11,8 @@ export const Login = () => {
         {isLoggedIn ? "Login" : "Register"}
       </h2>
       <form action="submit">
-        <label htmlFor="">Username</label>
-        <input type="text" placeholder="Enter Username"/>
+        <label htmlFor="">Username/Email</label>
+        <input type="text" placeholder="Enter Username or Email"/>
         <input type="text" placeholder="Enter Password"/>
         <p>By {isLoggedIn? "login" : "registering"} you agree to our <a href="">Terms & Conditions</a></p>
         <div className="button-and-link">
