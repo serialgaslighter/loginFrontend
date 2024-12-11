@@ -1,4 +1,5 @@
-import { useContext, useState } from "react";
+import Cookies from "js-cookie";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../utils/UserContext";
 import './Login.scss';
 
@@ -8,9 +9,20 @@ export const Login = () => {
   const [ password, setPassword ] = useState("");
   const [ error, setError ] = useState(null);
 
+  function checkLogin() {
+    const token = Cookies.get('authToken');
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }
+
+  useEffect(()=> {
+    checkLogin();
+  }, [])
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setError(null)
+    setError(null);
   
     if (!emailOrUsername || !password) {
       setError("Beide Felder sind erforderlich.");
@@ -23,6 +35,7 @@ export const Login = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: 'include',
         body: JSON.stringify({
           emailOrUsername,
           password,
@@ -53,6 +66,7 @@ export const Login = () => {
   const handleLogout = () => {
     setIsLoggedIn(false);
     console.log("Logout erfolgreich!");
+    Cookies.remove('authToken');
   };
 
   return (
